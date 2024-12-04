@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
-
 import { useNavigation } from '@react-navigation/native'
 
 import * as Animatable from 'react-native-animatable'
@@ -13,10 +12,15 @@ export default function SignIn() {
 
         <View style={styles.container}>
             <Animatable.View animation="fadeInLeft" delay={600} style={styles.containerHeader}>
-                <Text style={styles.message} >Bem-vindo(a)</Text>
+                <Text style={styles.message} >Cadastre-se!</Text>
             </Animatable.View>
 
             <Animatable.View animation="fadeInUp" style={styles.containerForm}>
+                <Text style={styles.title}>Nome</Text>
+                <TextInput 
+                    placeholder="Digite seu nome..."
+                    style = {styles.input}
+                />
                 <Text style={styles.title}>Email</Text>
                 <TextInput 
                     placeholder="Digite seu email..."
@@ -29,11 +33,11 @@ export default function SignIn() {
                 />
 
                 <TouchableOpacity style={styles.button}>
-                    <Text style={styles.buttonText}>Acessar</Text>
+                    <Text style={styles.buttonText}>Cadastrar</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.buttonRegister} onPress={() => navigation.navigate('SignUp')}>
-                    <Text style={styles.registerText}>Não possui uma conta? Cadastre-se!</Text>
+                <TouchableOpacity style={styles.buttonRegister} onPress={() => navigation.navigate('SignIn')}>
+                    <Text style={styles.registerText}>Já tenho uma conta!</Text>
                 </TouchableOpacity>
 
             </Animatable.View>
@@ -84,7 +88,7 @@ const styles = StyleSheet.create({
         borderRadius: 50,
         paddingVertical: 16,
         marginTop: 24,
-        marginBottom: 20,
+        marginBottom: 10,
         alignSelf: 'center',
         justifyContent: 'center',
         alignItems: 'center',
