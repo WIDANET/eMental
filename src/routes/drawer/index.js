@@ -7,7 +7,7 @@ const Drawer = createDrawerNavigator();
 
 export default function DrawerRoutes(){
     return (
-        <Drawer.Navigator screenOptions={{ headerShown: true }}> 
+        <Drawer.Navigator screenOptions={{ headerShown: false }}> 
             <Drawer.Screen 
                 name= "Inicio"
                 component={TabRoutes}
