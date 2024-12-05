@@ -41,10 +41,10 @@ export default function Carousel() {
       ref={flatListRef}
       onMomentumScrollEnd={(e) => {
         const contentOffsetX = e.nativeEvent.contentOffset.x;
-        const index = Math.floor(contentOffsetX / SCREEN_WIDTH); // Usa a largura da tela
+        const index = Math.floor(contentOffsetX / SCREEN_WIDTH); 
         setActiveIndex(index);
       }}
-      snapToInterval={SCREEN_WIDTH} // Garante que o scroll "trave" em cada item
+      snapToInterval={SCREEN_WIDTH}
       decelerationRate="fast"
       contentContainerStyle={styles.flatlistContent}
       style={styles.carousel}
@@ -60,15 +60,15 @@ const styles = StyleSheet.create({
   item: {
     justifyContent: "center",
     alignItems: "center",
-    width: SCREEN_WIDTH, // Cada item ocupa a largura da tela
+    width: SCREEN_WIDTH, 
   },
   image: {
-    width: "85%", // A imagem ocupa 80% da largura do item
+    width: "85%", 
     height: 200,
     borderRadius: 10,
   },
   flatlistContent: {
-    alignItems: "flex-start", // Centraliza verticalmente os itens
+    alignItems: "flex-start", 
   },
   separator: {
     width: 10,

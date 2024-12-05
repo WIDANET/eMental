@@ -14,7 +14,7 @@ export default function App() {
       <Header />
       <Text style={styles.BoasVindas}>Bem-vindo, Matteo!</Text>
       <Carousel />
-      {/* Frase do dia */}
+    
       <View style={styles.phraseContainer}>
         <Text style={styles.phraseTitle}>Frase do dia:</Text>
         <Text style={styles.phraseText}>
@@ -49,17 +49,17 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
     width: '86%',
     alignSelf: 'center',
-    elevation: 20, // Para Android
+    elevation: 20, 
   },
   phraseTitle: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: "#696969", // Cor especificada para o título
+    color: "#696969",
     
   },
   phraseText: {
     fontSize: 16,
-    color: "#696969", // Cor especificada para o texto da frase
+    color: "#696969", 
     marginTop: 10,
   },
   button: {
@@ -83,7 +83,7 @@ texto: {
   textAlign: 'center',
   marginTop: 50,
   fontSize: 16,
-  color: "#696969", // Cor especificada para o texto da frase
+  color: "#696969", 
 },
 BoasVindas: {
   fontWeight: 'bold',

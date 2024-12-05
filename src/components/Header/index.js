@@ -1,7 +1,7 @@
 import React from "react";
 import { View, StyleSheet, TouchableOpacity, Image } from "react-native";
 import { Feather } from "@expo/vector-icons";
-import { LinearGradient } from "expo-linear-gradient"; // Para o degradê
+import { LinearGradient } from "expo-linear-gradient"; 
 import { useNavigation } from "@react-navigation/native";
 
 function Header() {
@@ -9,7 +9,7 @@ function Header() {
 
   return (
     <View style={styles.container}>
-      {/* Botão de Menu */}
+   
       <TouchableOpacity
         style={styles.button}
         onPress={() => navigation.openDrawer()}
@@ -17,21 +17,20 @@ function Header() {
         <Feather name="menu" size={36} color="#696969" />
       </TouchableOpacity>
 
-      {/* Imagem Central */}
+     
       <Image
-        source={require("../../assets/logo.jpeg")} // Substitua pela URL ou pelo caminho da sua imagem
+        source={require("../../assets/logo.jpeg")}
         style={styles.image}
       />
 
-      {/* Botão de Mensagem */}
+
       <TouchableOpacity style={styles.button}>
         <Feather name="message-circle" size={36} color="#696969" />
       </TouchableOpacity>
 
-      {/* Degradê na parte inferior */}
       <LinearGradient
         colors={["transparent", "#FFFFFF"]}
-        style={styles.gradient} // Degradê que vai de transparente para branco
+        style={styles.gradient} 
       />
     </View>
   );
@@ -42,29 +41,29 @@ export default Header;
 const styles = StyleSheet.create({
   container: {
     height: 120,
-    backgroundColor: "#F7CAC9", // Cor de fundo da barra
-    flexDirection: "row", // Organiza os itens na horizontal
-    justifyContent: "space-between", // Espaça os itens horizontalmente
-    alignItems: "center", // Centraliza os itens verticalmente
-    paddingHorizontal: 10, // Espaçamento nas laterais
-    position: "relative", // Necessário para o posicionamento do degradê
+    backgroundColor: "#F7CAC9", 
+    flexDirection: "row", 
+    justifyContent: "space-between", 
+    alignItems: "center", 
+    paddingHorizontal: 10,
+    position: "relative", 
   },
   image: {
-    width: 100, // Tamanho da imagem (ajuste conforme necessário)
-    height: 100, // Tamanho da imagem
-    resizeMode: "contain", // Ajusta a imagem sem distorção
+    width: 100, 
+    height: 100,
+    resizeMode: "contain", 
   },
   gradient: {
-    position: "absolute", // Posiciona o degradê no fundo
-    bottom: 0, // Alinha o degradê na parte inferior
+    position: "absolute", 
+    bottom: 0, 
     left: 0,
     right: 0,
-    height: 60, // Altura do degradê
+    height: 60, 
   },
   button: {
-    height: "100%", // Ocupa toda a altura do container
-    justifyContent: "center", // Centraliza o conteúdo verticalmente
-    alignItems: "center", // Centraliza o conteúdo horizontalmente dentro do botão
-    paddingHorizontal: 10, // Espaçamento interno lateral dos botões (opcional)
+    height: "100%", 
+    justifyContent: "center", 
+    alignItems: "center",
+    paddingHorizontal: 10,
   },
 });

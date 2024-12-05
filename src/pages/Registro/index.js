@@ -16,12 +16,12 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1, // Permite que a View ocupe toda a tela
-    backgroundColor: '#fff', // Cor de fundo da tela
+    flex: 1, 
+    backgroundColor: '#fff', 
   },
   homeText: {
-    fontSize: 32, // Tamanho da fonte
-    fontWeight: 'bold', // Peso da fonte
-    color: '#333', // Cor do texto
+    fontSize: 32, 
+    fontWeight: 'bold', 
+    color: '#333', 
   }
 });
