@@ -2,8 +2,13 @@ import React from 'react';
 import { View, Text, StyleSheet, StatusBar, ScrollView,TouchableOpacity } from 'react-native';
 import Header from '../../components/Header';
 import Carousel from '../../components/Carrossel';
+import { useNavigation } from '@react-navigation/native';
 
 export default function App() {
+
+
+  const navigation = useNavigation();
+
   return (
     <ScrollView style={styles.container}>
       <Header />
@@ -19,7 +24,7 @@ export default function App() {
 
       <Text style={styles.texto}>Como você está se sentindo hoje? ☺</Text>
 
-      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate()}>
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Registro')}>
         <Text style={styles.buttonText}>Registrar</Text>
       </TouchableOpacity>
 

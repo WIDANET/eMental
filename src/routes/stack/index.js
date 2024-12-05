@@ -5,6 +5,7 @@ import SignIn from '../../pages/SignIn'
 import SignUp from '../../pages/SignUp'
 import TabRoutes from '../tab';
 import DrawerRoutes from '../drawer';
+import Registro from '../../pages/Registro'
 
 
 const Stack = createNativeStackNavigator();
@@ -30,6 +31,11 @@ export default function StackRoutes(){
             <Stack.Screen 
                 name="Home"
                 component={DrawerRoutes}
+                options={{headerShown: false}}
+            />
+            <Stack.Screen 
+                name="Registro"
+                component={Registro}
                 options={{headerShown: false}}
             />
         </Stack.Navigator>
