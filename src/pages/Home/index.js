@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
   },
   phraseContainer: {
     padding: 20,
-    marginTop: 90,
+    marginTop: 60,
     marginHorizontal: 15,
     backgroundColor: "#FFF",
     borderRadius: 10,
@@ -76,7 +76,7 @@ buttonText: {
 },
 texto: {
   textAlign: 'center',
-  marginTop: 110,
+  marginTop: 50,
   fontSize: 16,
   color: "#696969", // Cor especificada para o texto da frase
 },
