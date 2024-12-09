@@ -1,109 +1,187 @@
-import React from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
-import { useNavigation } from '@react-navigation/native'
+import React, { useState } from 'react';
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  StyleSheet,
+  Platform,
+  KeyboardAvoidingView,
+  ScrollView,
+} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { createUser } from '../../services/userService';
 
-import * as Animatable from 'react-native-animatable'
+export default function SignUp() {
+  const navigation = useNavigation();
 
-export default function SignIn() {
+  const [formData, setFormData] = useState({
+    nome: '',
+    sobrenome: '',
+    usuario: '',
+    email: '',
+    senha: '',
+  });
 
-    const navigation = useNavigation();
+  const handleChange = (name, value) => {
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
 
-    return (
+  const handleSubmit = async () => {
+    const emptyField = Object.values(formData).some((value) => value.trim() === '');
+    if (emptyField) {
+      alert('Por favor, preencha todos os campos!');
+      return;
+    }
 
-        <View style={styles.container}>
-            <Animatable.View animation="fadeInLeft" delay={600} style={styles.containerHeader}>
-                <Text style={styles.message} >Cadastre-se!</Text>
-            </Animatable.View>
+    try {
+      const response = await createUser(formData);
+      console.log('Usuário cadastrado:', response);
+      navigation.navigate('SignIn');
+    } catch (error) {
+      console.error('Erro ao cadastrar:', error);
+      alert('Erro ao cadastrar usuário');
+    }
+  };
 
-            <Animatable.View animation="fadeInUp" style={styles.containerForm}>
-                <Text style={styles.title}>Nome</Text>
-                <TextInput 
-                    placeholder="Digite seu nome..."
-                    style = {styles.input}
-                />
-                <Text style={styles.title}>Email</Text>
-                <TextInput 
-                    placeholder="Digite seu email..."
-                    style = {styles.input}
-                />
-                <Text style={styles.title}>Senha</Text>
-                <TextInput 
-                    placeholder="Digite sua senha..."
-                    style = {styles.input}
-                />
+  return (
+    <KeyboardAvoidingView
+      style={styles.container}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+    >
+      <ScrollView
+        contentContainerStyle={styles.scrollContainer}
+        keyboardShouldPersistTaps="handled"
+      >
+        <Text style={styles.message}>Cadastre-se!</Text>
 
-                <TouchableOpacity style={styles.button}>
-                    <Text style={styles.buttonText}>Cadastrar</Text>
-                </TouchableOpacity>
+        <View style={styles.containerForm}>
+          <Text style={styles.title}>Nome</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Digite seu primeiro nome..."
+            value={formData.nome}
+            onChangeText={(value) => handleChange('nome', value)}
+          />
 
-                <TouchableOpacity style={styles.buttonRegister} onPress={() => navigation.navigate('SignIn')}>
-                    <Text style={styles.registerText}>Já tenho uma conta!</Text>
-                </TouchableOpacity>
+          <Text style={styles.title}>Sobrenome</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Digite seu sobrenome..."
+            value={formData.sobrenome}
+            onChangeText={(value) => handleChange('sobrenome', value)}
+          />
 
-            </Animatable.View>
+          <Text style={styles.title}>Usuário</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Ex: @matteovalentino"
+            value={formData.usuario}
+            onChangeText={(value) => handleChange('usuario', value)}
+          />
 
+          <Text style={styles.title}>Email</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Digite seu email..."
+            value={formData.email}
+            onChangeText={(value) => handleChange('email', value)}
+            keyboardType="email-address"
+          />
 
-
+          <Text style={styles.title}>Senha</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Digite sua senha..."
+            secureTextEntry
+            value={formData.senha}
+            onChangeText={(value) => handleChange('senha', value)}
+          />
         </View>
-    )
+
+        <View style={styles.footer}>
+          <TouchableOpacity style={styles.button} onPress={handleSubmit}>
+            <Text style={styles.buttonText}>Cadastrar</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.buttonRegister}
+            onPress={() => navigation.navigate('SignIn')}
+          >
+            <Text style={styles.registerText}>Já tenho uma conta!</Text>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
+    </KeyboardAvoidingView>
+  );
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#F7CAC9',
-    },
-
-    containerHeader: {
-        marginTop: '14%',
-        marginBottom: '8%',
-        paddingStart: '5%',
-    },
-    message: {
-        fontSize: 28,
-        fontWeight: 'bold',
-        color: '#696969'
-    },
-    containerForm: {
-        backgroundColor: '#FFF',
-        flex: 1,
-        borderTopLeftRadius: 25,
-        borderTopRightRadius: 25,
-        paddingStart: '5%',
-        paddingEnd: '5%'
-    },
-    title: {
-        fontSize: 20,
-        marginTop: 28,
-    },
-    input: {
-        borderBottomWidth: 1,
-        height: 40,
-        marginBottom: 12,
-        fontSize: 16,
-    },
-    button: {
-        backgroundColor: '#F7CAC9',
-        width: '60%',
-        borderRadius: 50,
-        paddingVertical: 16,
-        marginTop: 24,
-        marginBottom: 10,
-        alignSelf: 'center',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    buttonText: {
-        textAlign: 'center',
-        fontSize: 20,
-        color: '#696969',
-        fontWeight: 'bold',
-    },
-    registerText: {
-        marginTop: 14,
-        alignSelf: 'center',
-        fontSize: 15,
-        color: '#696969',
-        
-    }
-})
+  container: {
+    flex: 1,
+    backgroundColor: '#F7CAC9',
+  },
+  scrollContainer: {
+    flexGrow: 1,
+    justifyContent: 'space-between',
+  },
+  message: {
+    fontSize: 28,
+    fontWeight: 'bold',
+    color: '#696969',
+    marginTop: '14%',
+    marginBottom: '8%',
+    paddingStart: '5%',
+  },
+  containerForm: {
+    backgroundColor: '#FFF',
+    flex: 1,
+    borderTopLeftRadius: 25,
+    borderTopRightRadius: 25,
+    paddingHorizontal: 20,
+    paddingTop: 10,
+    paddingBottom: 20,
+  },
+  title: {
+    fontSize: 20,
+    marginTop: 28,
+  },
+  input: {
+    borderBottomWidth: 1,
+    borderBottomColor: '#696969',
+    height: 40,
+    marginBottom: 12,
+    fontSize: 16,
+  },
+  footer: {
+    paddingBottom: 30,
+    backgroundColor: '#FFF',
+  },
+  button: {
+    backgroundColor: '#F7CAC9',
+    width: '60%',
+    borderRadius: 50,
+    paddingVertical: 16,
+    marginTop: 10,
+    alignSelf: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  buttonText: {
+    textAlign: 'center',
+    fontSize: 20,
+    color: '#696969',
+    fontWeight: 'bold',
+  },
+  buttonRegister: {
+    marginTop: 10,
+    alignSelf: 'center',
+  },
+  registerText: {
+    fontSize: 15,
+    color: '#696969',
+  },
+});
