@@ -45,7 +45,7 @@ export default function Carousel() {
         setActiveIndex(index);
       }}
       snapToInterval={SCREEN_WIDTH}
-      decelerationRate="fast"
+      decelerationRate={0.1}
       contentContainerStyle={styles.flatlistContent}
       style={styles.carousel}
     />
